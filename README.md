@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Needlecraft 
 ## git clone
 ```
@@ -40,3 +41,7 @@ salvare genreport /data/needlecraft/reports/test/test_attack_surface_ports_2024-
 ```
 TBD
 ```
+=======
+# api_classes
+This exists as a repo that can be used as a submodule to other repos to expand on basic, re-useable functions
+>>>>>>> 07eece5bca281c2e7cf12291825e0fc6f571db99
