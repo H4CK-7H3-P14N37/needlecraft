@@ -7,7 +7,7 @@ install:
 	libexpat1-dev libssl-dev zlib1g-dev libncurses-dev libbz2-dev liblzma-dev \
 	libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev libreadline-dev \
 	tk tk-dev libgdbm-compat-dev libbluetooth-dev python3-pkgconfig libgirepository1.0-dev \
-	mariadb-server libmariadb-dev
+	mariadb-server libmariadb-dev iptables
 	
 	# setup application directories
 	mkdir -p ${prefix}/opt
@@ -44,7 +44,8 @@ install:
 	cd masscan && make
 	cp masscan/bin/masscan ${prefix}/opt/
 	ln -s ${prefix}/opt/masscan /usr/bin/masscan
-	# TODO: put in iptable rule to stop rst packet
+	# drop this source port because of masscanning
+	iptables -A INPUT -p tcp --dport 61000 -j DROP
 	
 	# setup needlecraft scanning
 	cp -r api_classes ${prefix}/

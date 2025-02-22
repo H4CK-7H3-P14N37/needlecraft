@@ -1,0 +1,9 @@
+#!/bin/bash
+export GMAIL_APP_PASSWORD=""
+export GMAIL_EMAIL=""
+export HIBPKEY=""
+export SHODANKEY=""
+export SECURITYTRAILSKEY=""
+export GOOGLECX=""
+export GOOGLEKEY=""
+/data/needlecraft/env/bin/python3 /data/needlecraft/scripts/exercism.py "$@"
