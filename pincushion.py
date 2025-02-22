@@ -66,6 +66,8 @@ class PinCushionScan:
             "--banners",
             "--ports",
             "0-65535",
+            "--source-port",
+            "61000",
             "-e",
             self.interface_name,
             "-Pn",
