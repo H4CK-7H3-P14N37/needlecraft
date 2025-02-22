@@ -1,0 +1,2 @@
+#!/bin/bash
+/data/needlecraft/env/bin/python3 /data/needlecraft/scripts/salvare.py "$@"
