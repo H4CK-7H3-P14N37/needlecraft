@@ -6,8 +6,7 @@ git clone --recursive https://github.com/H4CK-7H3-P14N37/needlecraft.git
 ## setup
 ### NOTE: add API keys to exercism.example
 ```
-nano scripts/exercism.example
-cp exercism.example exercism
+nano scripts/exercism
 ```
 
 ## installation
