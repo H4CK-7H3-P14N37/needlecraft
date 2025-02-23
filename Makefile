@@ -56,8 +56,8 @@ install:
 	
 	# setup tor
 	cp -f config/torrc /etc/tor/torrc
-	systemctl restart tor
-	systemctl enable tor
+	# systemctl restart tor
+	# systemctl enable tor
 	
 	# clean up downloaded source code files
 	rm -rf nmap-* nmap.tgz chromedriver.zip chrome-linux.zip python3.tgz Python-*
