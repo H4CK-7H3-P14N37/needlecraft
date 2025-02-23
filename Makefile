@@ -45,7 +45,7 @@ install:
 	cp masscan/bin/masscan ${prefix}/opt/
 	# ln -s ${prefix}/opt/masscan /usr/bin/masscan
 	# drop this source port because of masscanning
-	iptables -A INPUT -p tcp --dport 61000 -j DROP
+	sudo iptables -A INPUT -p tcp --dport 61000 -j DROP
 	
 	# setup needlecraft scanning
 	cp -r api_classes ${prefix}/
