@@ -7,7 +7,7 @@ install:
 	libexpat1-dev libssl-dev zlib1g-dev libncurses-dev libbz2-dev liblzma-dev \
 	libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev libreadline-dev \
 	tk tk-dev libgdbm-compat-dev libbluetooth-dev python3-pkgconfig libgirepository1.0-dev \
-	mariadb-server libmariadb-dev iptables
+	mariadb-server libmariadb-dev iptables libcairo2-dev
 	
 	# setup application directories
 	mkdir -p ${prefix}/opt
