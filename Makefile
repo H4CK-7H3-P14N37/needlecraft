@@ -37,13 +37,13 @@ install:
 	curl -Lo "./nmap.tgz" "https://nmap.org/dist/nmap-7.95.tgz"
 	tar xvzf ./nmap.tgz
 	export PYTHON=${prefix}/env/bin/python3 && cd nmap-* && ./configure --prefix=${prefix}/opt/nmap && make && make install
-	ln -s ${prefix}/opt/nmap/bin/nmap /usr/bin/nmap
+	# ln -s ${prefix}/opt/nmap/bin/nmap /usr/bin/nmap
 	
 	# setup masscan
 	git clone https://github.com/robertdavidgraham/masscan.git
 	cd masscan && make
 	cp masscan/bin/masscan ${prefix}/opt/
-	ln -s ${prefix}/opt/masscan /usr/bin/masscan
+	# ln -s ${prefix}/opt/masscan /usr/bin/masscan
 	# drop this source port because of masscanning
 	iptables -A INPUT -p tcp --dport 61000 -j DROP
 	
