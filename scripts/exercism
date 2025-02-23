@@ -6,4 +6,6 @@ export SHODANKEY=""
 export SECURITYTRAILSKEY=""
 export GOOGLECX=""
 export GOOGLEKEY=""
+# drop this source port because of masscanning
+sudo iptables -A INPUT -p tcp --dport 61000 -j DROP
 /data/needlecraft/env/bin/python3 /data/needlecraft/scripts/exercism.py "$@"
