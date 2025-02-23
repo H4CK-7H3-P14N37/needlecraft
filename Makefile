@@ -2,7 +2,7 @@ prefix ?= /data/needlecraft
 # TODO: install python and nmap from source
 install:
 	# Install system dependancies
-	apt install -y curl unzip xvfb python3 python3-venv git make gcc tor ffmpeg sslscan \
+	apt install -y curl unzip xvfb python3 python3-dev python3-venv git make gcc tor ffmpeg sslscan \
 	libssl-dev g++ libnss3 libnss3-dev libnss3-tools build-essential cmake git \
 	libexpat1-dev libssl-dev zlib1g-dev libncurses-dev libbz2-dev liblzma-dev \
 	libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev libreadline-dev \
