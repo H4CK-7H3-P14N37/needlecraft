@@ -4,9 +4,9 @@ import json
 import base64
 import datetime
 import argparse
-from ..api_classes.voodoo import Voodoo
-from ..api_classes.mail_api import MailAPI
-from ..api_classes.pincushion import PinCushionScan,PinCushionHTTP,PinCushionSSLSCAN,PinCushionInternetDB,PinCushionRecon
+from api_classes.voodoo import Voodoo
+from api_classes.mail_api import MailAPI
+from api_classes.pincushion import PinCushionScan,PinCushionHTTP,PinCushionSSLSCAN,PinCushionInternetDB,PinCushionRecon
 
 def zip_folder(input_folder_path):
     voodoo_obj = Voodoo()

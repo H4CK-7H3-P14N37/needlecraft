@@ -1,0 +1,4 @@
+#!/bin/bash
+# drop this source port because of masscanning
+iptables -A INPUT -p tcp --dport 61000 -j DROP
+/data/needlecraft/env/bin/python3 /data/needlecraft/exercism.py "$@"

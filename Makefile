@@ -48,10 +48,13 @@ install:
 	# setup needlecraft scanning
 	cp -r api_classes ${prefix}/
 	cp -r config ${prefix}/
-	cp -r scripts ${prefix}/
-	ln -s ${prefix}/scripts/exercism /usr/local/bin/exercism
+	cp exercism ${prefix}/
+	cp exercism.py ${prefix}/
+	cp salvare ${prefix}/
+	cp salvare.py ${prefix}/
+	ln -s ${prefix}/exercism /usr/local/bin/exercism
 	chmod 755 /usr/local/bin/exercism
-	ln -s ${prefix}/scripts/salvare /usr/local/bin/salvare
+	ln -s ${prefix}/salvare /usr/local/bin/salvare
 	chmod 755 /usr/local/bin/salvare
 	
 	# setup tor
