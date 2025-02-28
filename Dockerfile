@@ -5,7 +5,7 @@ FROM kalilinux/kali-rolling
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Update and upgrade system packages
-RUN apt update && apt full-upgrade -y && apt autoremove -y && apt clean && apt install -y make
+RUN apt update && apt full-upgrade -y && apt autoremove -y && apt clean && apt install -y make iptables sudo
 
 # Make directory for needlecraft build
 RUN mkdir /root/needlecraft
