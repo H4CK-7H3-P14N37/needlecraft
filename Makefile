@@ -7,12 +7,13 @@ install:
 	libexpat1-dev libssl-dev zlib1g-dev libncurses-dev libbz2-dev liblzma-dev \
 	libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev libreadline-dev \
 	tk tk-dev libgdbm-compat-dev libbluetooth-dev python3-pkgconfig libgirepository1.0-dev \
-	mariadb-server libmariadb-dev iptables libcairo2-dev
+	mariadb-server libmariadb-dev iptables libcairo2-dev libglib2.0-dev libffi-dev \
+        gir1.2-gtk-3.0 pkg-config libgirepository-2.0-dev
 	
 	# setup application directories
 	mkdir -p ${prefix}/opt
 	mkdir -p ${prefix}/bin
-	mkdir ${prefix}/reports
+	mkdir -p ${prefix}/reports
 	mkdir -p ${prefix}/api_classes
 	mkdir -p ${prefix}/bin/nmap/bin
 	
@@ -24,7 +25,7 @@ install:
 	unzip ./chrome-linux.zip -d ${prefix}/opt/
 	
 	# install python from source to support nmap and be optimized
-	curl -Lo "./python3.tgz" "https://www.python.org/ftp/python/3.13.1/Python-3.13.1.tgz"
+	curl -Lo "./python3.tgz" "https://www.python.org/ftp/python/3.13.3/Python-3.13.3.tgz"
 	tar zxvf ./python3.tgz
 	cd Python-* && ./configure --enable-loadable-sqlite-extensions --prefix=${prefix}/opt/python3 --enable-optimizations && make &&	make install && cd ..
 	
