@@ -1,6 +1,8 @@
 prefix ?= /data/needlecraft
 # TODO: install python and nmap from source
 install:
+        # remove system versions of apps that conflict
+	apt purge -y nmap masscan
 	# Install system dependancies
 	apt install -y curl unzip xvfb python3 python3-dev python3-venv git make gcc tor ffmpeg sslscan \
 	libssl-dev g++ libnss3 libnss3-dev libnss3-tools build-essential cmake git \
@@ -38,13 +40,13 @@ install:
 	curl -Lo "./nmap.tgz" "https://nmap.org/dist/nmap-7.95.tgz"
 	tar xvzf ./nmap.tgz
 	export PYTHON=${prefix}/env/bin/python3 && cd nmap-* && ./configure --prefix=${prefix}/opt/nmap && make && make install
-	# ln -s ${prefix}/opt/nmap/bin/nmap /usr/bin/nmap
+	ln -s ${prefix}/opt/nmap/bin/nmap /usr/bin/nmap
 	
 	# setup masscan
 	git clone https://github.com/robertdavidgraham/masscan.git
 	cd masscan && make
 	cp masscan/bin/masscan ${prefix}/opt/
-	# ln -s ${prefix}/opt/masscan /usr/bin/masscan
+	ln -s ${prefix}/opt/masscan /usr/bin/masscan
 	
 	# setup needlecraft scanning
 	cp -r api_classes ${prefix}/
