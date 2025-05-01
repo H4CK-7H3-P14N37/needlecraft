@@ -10,7 +10,7 @@ install:
 	libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev libreadline-dev \
 	tk tk-dev libgdbm-compat-dev libbluetooth-dev python3-pkgconfig libgirepository1.0-dev \
 	mariadb-server libmariadb-dev iptables libcairo2-dev libglib2.0-dev libffi-dev \
-        gir1.2-gtk-3.0 pkg-config libgirepository-2.0-dev
+    gir1.2-gtk-3.0 pkg-config libgirepository-2.0-dev nano
 	
 	# setup application directories
 	mkdir -p ${prefix}/opt
@@ -37,7 +37,7 @@ install:
 	${prefix}/env/bin/pip install --upgrade pip build setuptools
 	
 	# setup nmap
-	curl -Lo "./nmap.tgz" "https://nmap.org/dist/nmap-7.95.tgz"
+	curl -v -Lo "./nmap.tgz" "https://nmap.org/dist/nmap-7.95.tgz"
 	tar xvzf ./nmap.tgz
 	export PYTHON=${prefix}/env/bin/python3 && cd nmap-* && ./configure --prefix=${prefix}/opt/nmap && make && make install
 	ln -s ${prefix}/opt/nmap/bin/nmap /usr/bin/nmap
