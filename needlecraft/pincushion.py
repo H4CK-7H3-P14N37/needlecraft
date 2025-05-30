@@ -410,7 +410,7 @@ class PinCushionHTTP:
             self.chrome_binary = f"{get_api_key('PREFIX')}/opt/chrome-linux64/chrome"
             self.chrome_driver = f"{get_api_key('PREFIX')}/opt/chromedriver-linux64/chromedriver"
         elif sys.platform == "darwin":
-            self.chrome_binary = f"{get_api_key('PREFIX')}/opt/chrome-mac-arm64/chrome"
+            self.chrome_binary = f"{get_api_key('PREFIX')}/opt/chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing"
             self.chrome_driver = f"{get_api_key('PREFIX')}/opt/chromedriver-mac-arm64/chromedriver"
         if kwargs.get("CHROMEDRIVER"):
             self.chrome_driver = kwargs.get("CHROMEDRIVER")
