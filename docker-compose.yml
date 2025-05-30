@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  needlecraft:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: needlecraft
+    volumes:
+      - ./reports:/data/needlecraft/reports
+    env_file:
+      - .env
+    stdin_open: true
+    tty: true
+    command: bash

@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "needlecraft"
+version = "0.1.0"
+description = "A universal tool to do all the things Offsec, recon, etc."
+authors = [{ name="Leon Denard", email="ltdenard@gmail.com" }]
+readme = "README.md"
+license-files = ["LICENSE"]
+requires-python = ">=3.13"
+dependencies = [
+    "dnspython",
+    "lxml",
+    "netaddr",
+    "pandas",
+    "random-user-agent",
+    "requests",
+    "requests-file",
+    "selenium",
+    "shodan",
+    "tldextract",
+    "validators",
+    "xlrd",
+    "XlsxWriter",
+    "xmltodict",
+    "python-docx"
+]
+
+[tool.setuptools]
+packages = ["needlecraft"]
+
+[project.scripts]
+exercism = "needlecraft.cli:exercism"
+salvare = "needlecraft.cli:salvare"
+ncconfig = "needlecraft.cli:config"
