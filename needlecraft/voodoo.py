@@ -14,34 +14,25 @@ import shodan
 import tldextract
 import validators
 import dns.resolver
+from needlecraft.config import get_api_key
 
 class Voodoo:
     def __init__(self, **kwargs):
         self.column_width = 55
-        self.hibp_key = ""
-        if os.environ.get("HIBPKEY"):
-            self.hibp_key = os.environ.get("HIBPKEY")
-        elif kwargs.get("HIBPKEY"):
+        self.hibp_key = get_api_key("HIBPKEY")
+        if kwargs.get("HIBPKEY"):
             self.hibp_key = kwargs.get("HIBPKEY")
-        self.shodan_key = ""
-        if os.environ.get("SHODANKEY"):
-            self.shodan_key = os.environ.get("SHODANKEY")
-        elif kwargs.get("SHODANKEY"):
+        self.shodan_key = get_api_key("SHODANKEY")
+        if kwargs.get("SHODANKEY"):
             self.shodan_key = kwargs.get("SHODANKEY")
-        self.securitytrails_key = ""
-        if os.environ.get("SECURITYTRAILSKEY"):
-            self.securitytrails_key = os.environ.get("SECURITYTRAILSKEY")
-        elif kwargs.get("SECURITYTRAILSKEY"):
+        self.securitytrails_key = get_api_key("SECURITYTRAILSKEY")
+        if kwargs.get("SECURITYTRAILSKEY"):
             self.securitytrails_key = kwargs.get("SECURITYTRAILSKEY")
-        self.google_customsearch_cx = ""
-        if os.environ.get("GOOGLECX"):
-            self.google_customsearch_cx = os.environ.get("GOOGLECX")
-        elif kwargs.get("GOOGLECX"):
+        self.google_customsearch_cx = get_api_key("GOOGLECX")
+        if kwargs.get("GOOGLECX"):
             self.google_customsearch_cx = kwargs.get("GOOGLECX")
-        self.google_api_key = ""
-        if os.environ.get("GOOGLEKEY"):
-            self.google_api_key = os.environ.get("GOOGLEKEY")
-        elif kwargs.get("GOOGLEKEY"):
+        self.google_api_key = get_api_key("GOOGLEKEY")
+        if kwargs.get("GOOGLEKEY"):
             self.google_api_key = kwargs.get("GOOGLEKEY")
         self.resolver = dns.resolver.Resolver()
         self.resolver.timeout = 0.8

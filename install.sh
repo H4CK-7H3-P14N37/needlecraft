@@ -55,12 +55,23 @@ sudo mkdir -p "$PREFIX/reports"
 sudo chown -R `whoami` $PREFIX
 
 echo "[+] Downloading Chrome for Testing and Chromedriver..."
-curl -Lo "chrome-linux.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/linux64/chrome-linux64.zip"
-curl -Lo "chromedriver.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/linux64/chromedriver-linux64.zip"
+# https://googlechromelabs.github.io/chrome-for-testing/#stable
+if [[ "$OS" == "Darwin" ]]; then
+    echo "[+] Detected macOS"
+    curl -Lo "chrome.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/mac-arm64/chrome-mac-arm64.zip"
+    curl -Lo "chromedriver.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/mac-arm64/chromedriver-mac-arm64.zip"
+elif [[ "$OS" == "Linux" ]]; then
+    echo "[+] Detected Linux"
+    curl -Lo "chrome.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/linux64/chrome-linux64.zip"
+    curl -Lo "chromedriver.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/linux64/chromedriver-linux64.zip"
+else
+    echo "[-] Unsupported OS: $OS"
+    exit 1
+fi
 
 unzip chromedriver.zip -d "$PREFIX/opt/"
-unzip chrome-linux.zip -d "$PREFIX/opt/"
-rm -f chromedriver.zip chrome-linux.zip
+unzip chrome.zip -d "$PREFIX/opt/"
+rm -f chromedriver.zip chrome.zip
 
 echo "[+] Setting up Python virtual environment..."
 echo `pwd`

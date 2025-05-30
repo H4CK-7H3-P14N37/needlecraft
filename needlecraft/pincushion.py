@@ -1,6 +1,7 @@
 import os
 import re
 import csv
+import sys
 import json
 import random
 import datetime
@@ -28,10 +29,10 @@ class PinCushionScan:
         )
         if kwargs.get("BASEDIR"):
             self.base_dir = kwargs.get("BASEDIR")
-        self.masscan_bin = os.environ.get("MASSCAN_PATH")
+        self.masscan_bin = get_api_key("MASSCAN_PATH")
         if kwargs.get("MASSCAN_PATH"):
             self.masscan_bin = kwargs.get("MASSCAN_PATH")
-        self.nmap_bin = os.environ.get("NMAP_PATH")
+        self.nmap_bin = get_api_key("NMAP_PATH")
         if kwargs.get("NMAP_PATH"):
             self.nmap_bin = kwargs.get("NMAP_PATH")
         if not self.nmap_bin or not self.masscan_bin:
@@ -45,6 +46,8 @@ class PinCushionScan:
 
     def initial_massscan(self, ip_list_filename):
         """masscan of stuff"""
+        if os.geteuid() != 0:
+            raise Exception("You need sudo permissions.")
         output_filename = os.path.join(
             self.base_dir,
             f"{self.customer_name}_masscan_{datetime.datetime.now().isoformat()}.json")
@@ -403,8 +406,12 @@ class PinCushionHTTP:
         self.base_dir = get_api_key("REPORT_DIR")
         if kwargs.get("BASEDIR"):
             self.base_dir = kwargs.get("BASEDIR")
-        self.chrome_binary = f"{get_api_key('PREFIX')}/opt/chrome-linux64/chrome"
-        self.chrome_driver = f"{get_api_key('PREFIX')}/opt/chromedriver-linux64/chromedriver"
+        if sys.platform == "linux":
+            self.chrome_binary = f"{get_api_key('PREFIX')}/opt/chrome-linux64/chrome"
+            self.chrome_driver = f"{get_api_key('PREFIX')}/opt/chromedriver-linux64/chromedriver"
+        elif sys.platform == "darwin":
+            self.chrome_binary = f"{get_api_key('PREFIX')}/opt/chrome-mac-arm64/chrome"
+            self.chrome_driver = f"{get_api_key('PREFIX')}/opt/chromedriver-mac-arm64/chromedriver"
         if kwargs.get("CHROMEDRIVER"):
             self.chrome_driver = kwargs.get("CHROMEDRIVER")
         if kwargs.get("CHROMEBIN"):
