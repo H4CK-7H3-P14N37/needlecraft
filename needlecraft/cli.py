@@ -465,3 +465,6 @@ def config():
         print(f"Saved API key for {args.env_name}!")
     else:
         parser.print_help()
+
+if __name__ == "__main__":
+    exercism()
