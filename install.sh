@@ -27,7 +27,7 @@ if [[ "$OS" == "Darwin" ]]; then
     brew install \
         curl unzip python3 git \
         masscan nmap tor ffmpeg \
-        cairo pkg-config sslscan
+        cairo pkg-config sslscan nano
 
 elif [[ "$OS" == "Linux" ]]; then
     echo "[+] Detected Linux"
@@ -44,7 +44,7 @@ elif [[ "$OS" == "Linux" ]]; then
         libexpat1-dev zlib1g-dev libncurses-dev libbz2-dev liblzma-dev \
         libsqlite3-dev libffi-dev tcl-dev linux-headers-generic libgdbm-dev libreadline-dev \
         tk tk-dev libgdbm-compat-dev libbluetooth-dev python3-pkgconfig libgirepository1.0-dev \
-        mariadb-server libmariadb-dev iptables libcairo2-dev
+        mariadb-server libmariadb-dev iptables libcairo2-dev nano
 else
     echo "[-] Unsupported OS: $OS"
     exit 1
@@ -58,12 +58,12 @@ echo "[+] Downloading Chrome for Testing and Chromedriver..."
 # https://googlechromelabs.github.io/chrome-for-testing/#stable
 if [[ "$OS" == "Darwin" ]]; then
     echo "[+] Detected macOS"
-    curl -Lo "chrome.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/mac-arm64/chrome-mac-arm64.zip"
-    curl -Lo "chromedriver.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/mac-arm64/chromedriver-mac-arm64.zip"
+    curl -Lo "chrome.zip" "https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.83/mac-arm64/chrome-mac-arm64.zip"
+    curl -Lo "chromedriver.zip" "https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.83/mac-arm64/chromedriver-mac-arm64.zip"
 elif [[ "$OS" == "Linux" ]]; then
     echo "[+] Detected Linux"
-    curl -Lo "chrome.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/linux64/chrome-linux64.zip"
-    curl -Lo "chromedriver.zip" "https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.55/linux64/chromedriver-linux64.zip"
+    curl -Lo "chrome.zip" "https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.83/linux64/chrome-linux64.zip"
+    curl -Lo "chromedriver.zip" "https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.83/linux64/chromedriver-linux64.zip"
 else
     echo "[-] Unsupported OS: $OS"
     exit 1
@@ -88,7 +88,7 @@ ln -sf "$PREFIX/env/bin/ncconfig" "$BIN_DIR/ncconfig"
 get_default_interface() {
     case "$(uname -s)" in
         Linux)
-            ip route | awk '/default/ {print $5}'
+            ip route | awk '/default/ {print $5}'|head -n1
             ;;
         Darwin)
             route get default 2>/dev/null | awk '/interface: / {print $2}'

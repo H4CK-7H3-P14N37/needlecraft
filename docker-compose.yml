@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: needlecraft
+    hostname: needlecraft.local
     volumes:
       - ./reports:/data/needlecraft/reports
     env_file:
