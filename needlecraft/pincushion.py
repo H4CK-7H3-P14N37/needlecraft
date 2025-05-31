@@ -468,7 +468,6 @@ class PinCushionHTTP:
         options.add_argument("--remote-allow-origins=*")
         options.add_argument("--disable-dev-shm-usage")
         options.add_argument("--disable-dev-tools")
-        options.add_argument("--disable-background-networking")
         options.add_argument("--no-zygote")
         options.add_argument(f"--user-data-dir={mkdtemp()}")
         options.add_argument(f"--data-path={mkdtemp()}")
@@ -483,7 +482,6 @@ class PinCushionHTTP:
         options.add_argument('--no-cache')
         options.add_argument('--disable-extensions')
         options.add_argument('--disable-geolocation')
-        options.add_argument('--disable-features=UseChromeOSDirectlyConnectedDevices')
         options.add_argument(f'--user-agent={user_agent}')
         options.add_argument('--disable-client-side-phishing-detection')
         if ".onion" in http_url.lower():
