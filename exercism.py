@@ -254,6 +254,21 @@ def email_results(customer, email_to, email_body, email_attachments):
         attachments=[email_attachments]
     )
 
+def pull_maxmind_asns(
+        self,
+        filename=None,
+        keywords_list=[],
+        exclude_words_list=[]
+    ):
+    voodoo_obj = Voodoo()
+    all_files, asns_list = voodoo_obj.run_maxmind_download(
+        filename=None,
+        keywords_list=[],
+        exclude_words_list=[]
+    )
+    return all_files, asns_list
+
+
 
 
 if __name__ == "__main__":
@@ -317,6 +332,13 @@ if __name__ == "__main__":
     parser_recon.add_argument('recon_domain', help='recon domain')
     parser_recon.add_argument('customer_name', help='Customer name')
     
+    # maxmind
+    parser_maxmind = subparsers.add_parser('maxmind', help='maxmind help')
+    parser_maxmind.add_argument('customer_name', help='Customer name')
+    parser_maxmind.add_argument('-k', '--keywords', nargs='+', help='List of keywords')
+    parser_maxmind.add_argument('-e', '--exclude', nargs='+', type=int, help='List of words to exclude', required=False)
+    parser_maxmind.add_argument('-s', '--savefile', required=False, help='filename to save output')
+
     # arguments
     args = parser.parse_args()
     args_dict = args.__dict__
@@ -370,4 +392,13 @@ if __name__ == "__main__":
     elif "recon_domain" in args_dict.keys():
         _, _, whois_poc_table = recon_whois_domain(args.customer_name, args.recon_domain)
         print(whois_poc_table)
+    
+    elif "maxmind" in args_dict.keys():
+        all_files, asns_list = pull_maxmind_asns(
+            filename=args.savefile,
+            keywords_list=args.keywords,
+            exclude_words_list=args.exclude
+        )
+        print("\n".join(asns_list))
+
         
