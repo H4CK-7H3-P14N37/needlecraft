@@ -268,9 +268,11 @@ def pull_maxmind_asns(
     return all_files, asns_list
 
 def pdns_pull(
-        ip_list,
+        ip_list_filename,
         save_filename=None
     ):
+    with open(ip_list_filename, "r", encoding="utf-8") as f:
+        ip_list = f.read().splitlines()
     voodoo_obj = Voodoo()
     record_list = voodoo_obj.mass_pdns_lookup(ip_list)
     if save_filename:
@@ -351,7 +353,10 @@ if __name__ == "__main__":
     # passive dns
     parser_pdns = subparsers.add_parser('pdns', help='pdns help')
     parser_pdns.add_argument('customer_name', help='Customer name')
-    parser_pdns.add_argument('pdns_list', help='IP/CIDRs to lookup file')
+    parser_pdns.add_argument(
+        'pdns_list',
+        help='IP/CIDRs to lookup file'
+    )
     parser_pdns.add_argument('-o', '--output', required=False, help='filename to save output')
 
     # arguments
@@ -419,9 +424,7 @@ if __name__ == "__main__":
     # pdns
     elif 'pdns_list' in args_dict.keys():
         pdns_list, filename = pdns_pull(args.pdns_list, args.output)
-        if filename:
-            print(f"Saved to {filename}")
-        else:
+        if not filename:
             print(f"Passive DNS:\n\n{'\n'.join(pdns_list)}")
 
         
