@@ -27,7 +27,7 @@ install:
 	unzip ./chrome-linux.zip -d ${prefix}/opt/
 	
 	# install python from source to support nmap and be optimized
-	curl -Lo "./python3.tgz" "https://www.python.org/ftp/python/3.14.0/Python-3.14.0.tgz"
+	curl -Lo "./python3.tgz" "https://www.python.org/ftp/python/3.14.1/Python-3.14.1.tgz"
 	tar zxvf ./python3.tgz
 	cd Python-* && ./configure --enable-loadable-sqlite-extensions --prefix=${prefix}/opt/python3 --enable-optimizations && make &&	make install && cd ..
 	
